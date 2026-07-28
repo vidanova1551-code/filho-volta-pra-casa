@@ -84,7 +84,7 @@ export default function Hero({ onStart }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.45, duration: 1 }}
         >
-          SEGUIR
+          click aqui
         </motion.button>
       </div>
     </section>
