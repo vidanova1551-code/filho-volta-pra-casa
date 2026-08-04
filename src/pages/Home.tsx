@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import Hero from "../components/Hero/Hero";
+import IndicadorRolagem from "../components/IndicadorRolagem";
 
 import Chapter01 from "../components/Journey/Chapter01";
 import Chapter02 from "../components/Journey/Chapter02";
@@ -15,18 +17,52 @@ export default function Home() {
   const [started, setStarted] = useState(false);
 
   return (
-    <main className="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory">
-      <Hero onStart={() => setStarted(true)} />
+    <main className="h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth">
+      <div className="relative">
+        <Hero onStart={() => setStarted(true)} />
+
+        {started && (
+          <IndicadorRolagem texto="Deslize para começar esta jornada" />
+        )}
+      </div>
 
       {started && (
         <>
-          <Chapter01 />
-          <Chapter02 />
-          <Chapter03 />
-          <Chapter04 />
-          <Chapter05 />
-          <Chapter06 />
-          <Decision />
+          <div className="relative">
+            <Chapter01 />
+            <IndicadorRolagem texto="Continue... ainda há mais para você" />
+          </div>
+
+          <div className="relative">
+            <Chapter02 />
+            <IndicadorRolagem texto="Há uma história esperando por você" />
+          </div>
+
+          <div className="relative">
+            <Chapter03 />
+            <IndicadorRolagem texto="Ainda não acabou" />
+          </div>
+
+          <div className="relative">
+            <Chapter04 />
+            <IndicadorRolagem texto="Dê mais um passo" />
+          </div>
+
+          <div className="relative">
+            <Chapter05 />
+            <IndicadorRolagem texto="Continue... o Pai ainda está falando" />
+          </div>
+
+          <div className="relative">
+            <Chapter06 />
+            <IndicadorRolagem texto="Você está perto de uma decisão" />
+          </div>
+
+          <div className="relative">
+            <Decision />
+            <IndicadorRolagem texto="Deslize e dê o próximo passo" />
+          </div>
+
           <Form />
           <Footer />
         </>
