@@ -1,5 +1,11 @@
 import { useRef } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Home from "./pages/Home";
+import LoginAdmin from "./pages/LoginAdmin";
+import PainelAdmin from "./pages/PainelAdmin";
+import RotaProtegida from "./routes/RotaProtegida";
+
 import music from "./assets/audio/ainda-ha-lugar.mp3";
 
 declare global {
@@ -20,7 +26,7 @@ function App() {
     }
 
     try {
-      audio.volume = 0.30;
+      audio.volume = 0.3;
       await audio.play();
       console.log("Música tocando");
     } catch (error) {
@@ -29,10 +35,24 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <audio ref={audioRef} src={music} loop preload="auto" />
-      <Home />
-    </>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/adm" element={<LoginAdmin />} />
+
+        <Route
+          path="/adm/painel"
+          element={
+            <RotaProtegida>
+              <PainelAdmin />
+            </RotaProtegida>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
